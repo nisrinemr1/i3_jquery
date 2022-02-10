@@ -1,0 +1,13 @@
+body{
+    background-color: indigo;
+    text-align: center;
+}
+
+.largeImg > img{
+    height:500px;
+    margin-top: 70px;
+}
+
+.smallImg > img{
+    height:75px;
+}

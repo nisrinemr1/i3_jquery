@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #spaceShip{
+            position: absolute;left: 500px;
+        }
+    </style>
+    
+    <title>Document</title>
+</head>
+<body>
+    <img id="spaceShip" src="./img/vaisseau.png" alt="spaceship">
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" > </script>
+    <script>
+        $(document).ready(function(){
+            $(document).on('keydown', function(e){
+                if(e.key === 'ArrowLeft'){
+                    let x = parseInt($('#spaceShip').css('left'));
+                    /* let x = parseInt($({'#spaceShip').css('left'})); */
+                    /* deuxième manière */
+                    $('#spaceShip').css('left', (x-3) + 'px');
+                }
+                if(e.key === 'ArrowRight'){
+                    let x = parseInt($('#spaceShip').css('left'));
+                    $('#spaceShip').css('left', (x+3) + 'px');
+                }
+                if(e.key === 'ArrowUp'){
+                    let x = parseInt($('#spaceShip').css('top'));
+                    $('#spaceShip').css('top', (x-3) + 'px');
+                }
+                if(e.key === 'ArrowDown'){
+                    let x = parseInt($('#spaceShip').css('top'));
+                    $('#spaceShip').css('top', (x+3) + 'px');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

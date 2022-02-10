@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> .hidden{ display:none; } </style>
+    <title>Document</title>
+</head>
+<body>
+    <button id="myButton">Cliiiick</button>
+    <p id="myParagraphe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam provident, ipsa suscipit possimus distinctio, et perspiciatis, necessitatibus illo non cum dolorem hic quasi. Impedit nihil reiciendis natus amet incidunt fugiat rem ea quod a aspernatur cum sunt, mollitia non repudiandae?</p>
+    <p id="myParagraphe2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam provident, ipsa suscipit possimus distinctio, et perspiciatis, necessitatibus illo non cum dolorem hic quasi. Impedit nihil reiciendis natus amet incidunt fugiat rem ea quod a aspernatur cum sunt, mollitia non repudiandae?</p>
+    <p><a href="#">lien</a> ipsum dolor sit amet, consectetur adipisicing elit. Adipisci esse numquam quos nemo doloribus beatae nisi voluptatibus explicabo laboriosam facilis.</p> 
+
+    <!-- ul>li{item$}*10 -->
+    <ul>
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+        <li>item6</li>
+        <li>item7</li>
+        <li>item8</li>
+        <li>item9</li>
+        <li>item10</li>
+    </ul>
+
+    <input type="checkbox">
+    <input checked type="checkbox"> <!-- sera déjà checké -->
+    <input type="checkbox">
+    <input type="checkbox">
+
+
+</script> ça c'est en mode js. On va le faire en mode jquery! -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+        $(function(){//pour attendre que le doc soit bien charger lors du chargement de la page document.body.onload
+            $('#myButton').on('click', function(e){
+                $('#myParagraphe,#myParagraphe2').toggleClass('hidden');
+            });
+            $('p:eq(1)').css({backgroundColor:'red'}); //on recup le deuxieme paragraphe.
+            
+            //selectionner p qui conteint un a 
+            $('p:has(a)').css({ color: 'white',backgroundColor: 'indigo' });
+            
+            $('input[type=text]');//sectionne tous les inputs de type text
+            
+            $('p [class^=hi]')//selectinne tous les elem dont la classe commence par 
+            
+            $('li').css({ color:'white' })
+            .slice(3,8)
+            .css({ 
+                backgroundColor: 'green', 
+                fontSize: '20px'
+            });
+
+            $('[type=checkbox]').css({ margin: '50px'})
+                .on('change', function(e){//add event listenner
+                    //la on va verif si la checkbox est checked
+                    if($(e.target).is(':checked')){//e.target permet de cibler l'elem qui a changer et tester s'il est checked
+                        $(e.target).css({opacity: 0.5})
+                    }
+                    else{
+                        $(e.target).css({ opacity:1 })
+                    }
+                });
+        });
+        </script>
+<!-- <script>
+    document.querySelector('#myButton') //16 et 17 peuvent être coller ensemble !
+        .addEventListener('click',function(e){
+                let paragraphes = document.querySelectorAll('#myParagraphe,#myParagraphe2');
+                for(let p of paragraphes){ //il faut le mettre pour parcourrir ce qu'il y a dans le "tableau" meme si c'est plutot une liste. 
+
+                //pour qu'il réaparaît : 
+                if(p.classList.contains('hidden')){
+                    p.classList.remove('hidden');
+                }
+                else{
+                    p.classList.add('hidden');
+                    //faire en css pour le faire disparaitre mais cette ligne de code ne fonctionne pas parce que paragraphe à une liste de 
+                }
+             }
+    });
+</body>
+</html>

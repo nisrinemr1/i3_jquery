@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body { margin: 0; padding: 0; }
+
+        *{ box-sizing: border-box;}
+
+        #menu-button {
+            display: none;
+            height: 50px;
+            width: 50px;
+            cursor: pointer;
+            position: fixed;
+            z-index:100;/*  */
+            top:20px;
+            left: 20px;
+            background-color:rgba(255, 105, 180, 0.666);
+            height: 50px;
+            width: 50px;
+            padding:10px;
+        }
+
+        #menu-button > div{
+            width: 30px;
+            height: 6px;
+            background-color: lavender;
+            transition: 0.3s ease all;
+            position:absolute;
+            top:22px;
+        }
+
+       #menu-button > div:nth-child(1){
+            transform: translateY(-12px);
+        }
+
+        #menu-button > div:nth-child(3){
+            transform: translateY(12px);
+        }
+        
+        ul:not(.collapse) > #menu-button > div:nth-child(1){
+            /* quand ul n'est pas caché, il sible menu button precisement la première div! */
+            transform: rotate(45deg) ;
+        }
+
+        ul:not(.collapse) > #menu-button > div:nth-child(2){
+            /* quand ul n'est pas caché, il sible menu button precisement la deuxième div! */
+            opacity:0;
+        }
+        ul:not(.collapse) > #menu-button > div:nth-child(3){
+            /* quand ul n'est pas caché, il sible menu button precisement la troisième div! */
+            transform: rotate(-45deg) ;
+        }
+        
+        
+
+        nav {
+            border-bottom: 1px solid black;
+        }
+        nav > ul {
+            height: 70px;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            list-style: none;
+        }
+        nav > ul > li {
+            padding: 0 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+        }
+
+        @media screen and (max-width:992px){
+            nav > ul {
+                flex-direction: column;
+                width: 300px;
+                height: 100vh;
+                background-color: rgb(227, 157, 250);
+                position: fixed;
+                left: 0;
+                top: 0;
+                transition: 0.3s ease all;
+            }
+
+            nav > ul.collapse {
+                left:-300px;
+            }
+
+            nav > ul> li { 
+
+                height: 70px; 
+                border-right: unset;
+                border-left:unset;
+                border-bottom:1px solid black;
+
+            }
+
+            #menu-button {
+                display: block;
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="collapse">
+            <div id="menu-button"><!-- pour faciliter de modifier le button -->
+                <div></div><!-- la première div qui va pivoter -->
+                <div></div>
+                <div></div>
+            </div>
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+            <li>item 4</li>
+        </ul>
+    </nav>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#menu-button').on('click', function(e) { 
+            $('ul').toggleClass('collapse') 
+        });
+    </script>  
+</body>
+</html>

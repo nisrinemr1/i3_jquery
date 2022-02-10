@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input id="productName" type="text">
+        <button id="add">Ajouter</button>
+    </div>
+    <!-- pour chaque click, on recup l'input et on l'insere dans le tbody -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+<!-- Alternative à live!  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" > </script>
+    <script>
+        $(document).ready(function(){//= document.getelementbyId donc add click event on add button 
+            $('#add').on('click', function(){
+                //recup la valeur de mon input 
+                let value = $('#productName').val();
+                //create a row that will be include in the tbody
+                let row = $(
+                `<tr>
+                    <td>${value}</td>
+                    <td><button class="deleteBtn">X</button></td>
+                    </tr><`);
+                    $('tbody').append(row);
+            });
+            /* $('.deleteBtn').on('click', function(){alert()}); *///alert fonctionnera pas vu que le bton delete n'existait pas. si on le met dans la fonction, il refera l'alert à chaque fois en fonction du nombre des lignes qu'on a ajouté.
+            $('tbody').on('click', '.deleteBtn', function(e){
+                let btn = $(e.target);// recup le button sur le lequel on a cliquer. On peut récuperer ses parents 
+                let row = btn.parents('tr').remove();//pour supprimer le la ligne aka tr
+            });
+            $('#productName').on('keydown', function(e){
+                if(e.key === 'Enter'){ //avec la touche enter il sert a declancher un evement une fois qu'il est dans l'input!
+                    $('#add').trigger('click');
+                }
+            })
+        });
+    </script>
+</body>
+</html>

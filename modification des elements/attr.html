@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="www.google.be">lien vers google</a>
+    <a href="www.facebook.com">lien vers facebook</a>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" > </script>
+    <script>
+        //let lein = $('a').attr('href');
+        //console.log(lien);
+        $('a').each(function(i,item){//pour tout les eleme  of item
+            let lien = $(item).attr('href');// je recupère les element item qui est le lien
+            console.log(lien);
+        })
+
+        //en js
+        for(let item of $('a')){
+            let lien = $('a').attr('href');
+            console.log(lien);
+        }
+    </script>
+</body>
+</html>

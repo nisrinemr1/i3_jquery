@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="meteo">
+        <p id="temperature"></p>
+        <img src="" id="image">
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" > </script>
+    <script>
+        /* //etape1 :objet qui permet de se connecter à un serveur
+        let xhr = new XMLHttpRequest();
+        //objet pdo c'est php mysql mais xhr autre chose et c'est un objet
+        
+        //etape2 : ouvrir une connection au serveur
+        xhr.open('GET','https://www.prevision-meteo.ch/services/json/lat=46.259lng=5.235');//on pourra changer avec la position ou on est en changeant la lat dans le lien
+
+        //etape3 : envoyer la requete 
+        xhr.send();
+        
+        //definir la fonction qui sera exécutée lorsque les données seront récupérée
+        xhr.onload = function(result){
+            //etape 4 qui est l'étape finale de la requète.
+            if(xhr.readyState === 4){
+                //json.parse transforme une chaine de caracteres en objet javascript
+                let json = JSON.parse(result.target.response);//il faut parcourir l'objet response
+
+                //LIGNE 45 EN JQUERY :)
+
+                console.log(JSON.parse(result.target.response));
+                let tmp = json.current_condition.tmp;//valeur de la temperature qu'on va ensuite l'ajouter dans la div
+                let image = json.current_condition.icon_big;
+                document.getElementById('temperature').innerHTML= tmp;
+                document.getElementById('image').setAttribute('src', image);
+            }
+            //https://developer.mozilla.org/fr/docs/Web/API/XMLHttpRequest/readyState
+        } */
+
+        $get('https://www.prevision-meteo.ch/services/json/lat=46.259lng=5.235')
+        .done(json =>{//quand ça a reussi
+            let tmp = json.current_condition.tmp;//valeur de la temperature qu'on va ensuite l'ajouter dans la div
+            let image = json.current_condition.icon_big;
+            $('#temperature').html(tmp);
+            $('#image').attr('src', image);
+        }).fail().always();//a ajouter. genre, si fail ça affiche autre et always qu'il continue quoi qu'il arrive avec le leader []
+    </script>
+</body>
+</html>
